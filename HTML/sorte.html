@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prorject Sun - Desconto</title>
+	<link rel="stylesheet" href="estilo.css" />
+</head>
+<body>
+
+    <div class="container">
+	
+        <h1>Desconto Surpresa</h1>
+    
+        <div class="game-section">
+            <h2>Sorte!</h2>
+            <p>Escolha 6 números entre 1 e 100.</p>
+            <input type="number" id="num1" max="100" min="1" placeholder="Número 1" class="num-input">
+            <input type="number" id="num2" max="100" min="1" placeholder="Número 2" class="num-input">
+            <input type="number" id="num3" max="100" min="1" placeholder="Número 3" class="num-input">
+            <input type="number" id="num4" max="100" min="1" placeholder="Número 4" class="num-input">
+            <input type="number" id="num5" max="100" min="1" placeholder="Número 5" class="num-input">
+            <input type="number" id="num6" max="100" min="1" placeholder="Número 6" class="num-input">
+            <button class="btn" onclick="verificarSorte()">Verificar Sorte</button>
+            <div id="resultadoSorte" class="message"></div>
+        </div>
+        
+        <div class="price-section">
+            <h2>Escolha do Produto</h2>
+            <p>Escolha o valor e o produto e insira quanto deseja pagar.</p>
+            <label for="produto">Produto:</label>
+            <select id="produto">
+                <option value="Camisa Paradiso Company">Camisa "Paradiso Company"</option>
+                <option value="Caneca Paradiso">Caneca "Paradiso"</option>
+                <option value="Chapeu Limbus">Chapeu "Limbus"</option>
+                <option value="DLC Homem Potencial">DLC "Homem Potencial"</option>
+                <option value="Unidade Exclusiva Lamentador">Unidade Exclusiva "Lamentador"</option>
+            </select>
+            <br><br>
+            <label for="preco">Valor que deseja pagar: R$</label>
+            <input type="number" id="preco" min="0" placeholder="Insira o valor" class="num-input">
+            <button class="btn" onclick="calcularPreco()">Definir Preço</button>
+            <div id="resultadoPreco" class="message"></div>
+        </div>
+    </div>
+
+    <script>
+        function verificarSorte() 
+		{
+			const numerosSorteados = [4, 12, 89];
+			
+            let acertos = 0;
+            const numerosEscolhidos = [
+                parseInt(document.getElementById('num1').value),
+                parseInt(document.getElementById('num2').value),
+                parseInt(document.getElementById('num3').value),
+                parseInt(document.getElementById('num4').value),
+                parseInt(document.getElementById('num5').value),
+                parseInt(document.getElementById('num6').value)
+            ];
+
+          
+            for (let i = 0; i < numerosEscolhidos.length; i++) {
+                if (numerosSorteados.includes(numerosEscolhidos[i])) {
+                    acertos++;
+                }
+            }
+
+           
+            let mensagem = '';
+            if (acertos > 0) {
+                const desconto = acertos * 15;
+                mensagem = `Você acertou ${acertos} número(s)! Você ganhou ${desconto}% de desconto!`;
+                document.getElementById('resultadoSorte').classList.add('success');
+                document.getElementById('resultadoSorte').classList.remove('error');
+            } else {
+                mensagem = 'Nenhum número sorteado foi acertado. Tente novamente!';
+                document.getElementById('resultadoSorte').classList.add('error');
+                document.getElementById('resultadoSorte').classList.remove('success');
+            }
+            document.getElementById('resultadoSorte').innerHTML = mensagem;
+        }
+
+        
+        function calcularPreco() {
+            const produto = document.getElementById('produto').value;
+            const precoEscolhido = parseFloat(document.getElementById('preco').value);
+            
+            if (isNaN(precoEscolhido) || precoEscolhido <= 0) {
+                document.getElementById('resultadoPreco').innerHTML = 'Por favor, insira um valor válido!';
+                document.getElementById('resultadoPreco').classList.add('error');
+                document.getElementById('resultadoPreco').classList.remove('success');
+                return;
+            }
+
+            let mensagem = `Você escolheu o(a) ${produto} e deseja pagar R$ ${precoEscolhido.toFixed(2)}.`;
+            document.getElementById('resultadoPreco').innerHTML = mensagem;
+            document.getElementById('resultadoPreco').classList.add('success');
+            document.getElementById('resultadoPreco').classList.remove('error');
+        }
+    </script>
+	
+	<ul>
+		<li><a href="index.html">Pagina principal</a></li>
+		<li><a href="sobre.html">Saiba mais sobre nós</a></li>
+		<li><a href="contato.html">Entre em contato</a></li>
+		<li><a href="requisicao.html">Comissione um trabalho nosso!</a></li>
+	</ul>
+
+</body>
+</html>

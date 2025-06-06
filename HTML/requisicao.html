@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comissão de Serviço</title>
+    <link rel="stylesheet" href="estilo.css" />
+</head>
+
+<body>
+
+    <h1>Comissão de Serviço</h1>
+	
+    <form id="formulario" action="processar-formulario.php" method="POST">
+        
+        <label for="nome">Nome do Usuário</label><br /> 
+        <input type="text" id="nome" name="nome" required minlength="3" maxlength="100" pattern="[a-zA-ZÀ-ÿ\s]+"><br /> <br /> 
+
+        <label for="email">E-mail</label><br /> 
+        <input type="email" id="email" name="email" required><br /> <br /> 
+
+        <label for="telefone">Telefone (xx) xxxxx-xxxx</label><br /> 
+        <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" required
+            pattern="\(\d{2}\) \d{5}-\d{4}"><br /> <br /> 
+
+        <label for="servico">Serviço</label><br /> 
+        <select id="servico" name="servico" class="tp-servico" required><br /> <br /> 
+            <option value="site">Criação de Site</option><br /> 
+            <option value="marketing">Criação de Campanha de Marketing</option><br /> 
+            <option value="publicidade">Ajuda na Publicidade</option><br />
+        </select><br /> <br /> 
+       
+        <label for="detalhes">Detalhes do Serviço</label><br /> 
+        <textarea id="detalhes" name="detalhes" rows="7" cols="50" required minlength="10" maxlength="255"></textarea><br /> <br /> 
+
+        
+        <button type="submit" class="botao-enviar">Enviar</button> 
+    </form>
+
+    <div id="mensagem-popup" class="oculto">
+        <span id="icone"></span>
+        <p id="mensagem-texto"></p>
+    </div>
+	
+    <script src="script.js"></script>
+
+   	<ul>
+		<li><a href="index.html">Pagina principal</a></li>
+		<li><a href="sobre.html">Saiba mais sobre nós</a></li>
+		<li><a href="contato.html">Entre em contato</a></li>
+		<li><a href="sorte.html">Tente um jogo de sorte para ganhar descontos!</a></li>
+	</ul>
+
+</body>
+</html>
