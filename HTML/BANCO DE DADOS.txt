@@ -1,4 +1,4 @@
-#Banco de dados do sistema
+#banco de dados do sistema
 CREATE TABLE solicitacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
