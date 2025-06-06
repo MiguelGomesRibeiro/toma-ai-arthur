@@ -5,7 +5,7 @@ IMask(telefoneInput, {
     lazy: false, 
     placeholderChar: "_" 
 });
-
+//icones para requisição  
 function exibirMensagem(tipo, texto) {
     const mensagemPopup = document.getElementById("mensagem-popup");
     const icone = document.getElementById("icone");
@@ -28,7 +28,7 @@ function exibirMensagem(tipo, texto) {
         }, 500); 
     }, 3000);
 }
-
+//resposta para a solicitação 
 document.getElementById("formulario").addEventListener("submit", function (e) {
     e.preventDefault(); 
 
