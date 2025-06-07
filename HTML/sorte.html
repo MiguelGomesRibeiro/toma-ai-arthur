@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-#titulo da pagina
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prorject Sun - Desconto</title>
-	<link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="estilo.css" />
 </head>
-	#jogo da sorte para ganhar recompensas
 <body>
 
     <div class="container">
-	
         <h1>Desconto Surpresa</h1>
-    
+
         <div class="game-section">
             <h2>Sorte!</h2>
             <p>Escolha 6 números entre 1 e 100.</p>
@@ -26,7 +23,7 @@
             <button class="btn" onclick="verificarSorte()">Verificar Sorte</button>
             <div id="resultadoSorte" class="message"></div>
         </div>
-        
+
         <div class="price-section">
             <h2>Escolha do Produto</h2>
             <p>Escolha o valor e o produto e insira quanto deseja pagar.</p>
@@ -47,11 +44,18 @@
     </div>
 
     <script>
-        function verificarSorte() 
-		{
-			const numerosSorteados = [4, 12, 89];
-			
+        // Função utilitária separada para teste e reaproveitamento
+        function calcularAcertos(numerosEscolhidos, numerosSorteados = [4, 12, 89]) {
             let acertos = 0;
+            for (let i = 0; i < numerosEscolhidos.length; i++) {
+                if (numerosSorteados.includes(numerosEscolhidos[i])) {
+                    acertos++;
+                }
+            }
+            return acertos;
+        }
+
+        function verificarSorte() {
             const numerosEscolhidos = [
                 parseInt(document.getElementById('num1').value),
                 parseInt(document.getElementById('num2').value),
@@ -61,15 +65,9 @@
                 parseInt(document.getElementById('num6').value)
             ];
 
-          
-            for (let i = 0; i < numerosEscolhidos.length; i++) {
-                if (numerosSorteados.includes(numerosEscolhidos[i])) {
-                    acertos++;
-                }
-            }
-
-           
+            const acertos = calcularAcertos(numerosEscolhidos);
             let mensagem = '';
+
             if (acertos > 0) {
                 const desconto = acertos * 15;
                 mensagem = `Você acertou ${acertos} número(s)! Você ganhou ${desconto}% de desconto!`;
@@ -80,14 +78,14 @@
                 document.getElementById('resultadoSorte').classList.add('error');
                 document.getElementById('resultadoSorte').classList.remove('success');
             }
+
             document.getElementById('resultadoSorte').innerHTML = mensagem;
         }
 
-        
         function calcularPreco() {
             const produto = document.getElementById('produto').value;
             const precoEscolhido = parseFloat(document.getElementById('preco').value);
-            
+
             if (isNaN(precoEscolhido) || precoEscolhido <= 0) {
                 document.getElementById('resultadoPreco').innerHTML = 'Por favor, insira um valor válido!';
                 document.getElementById('resultadoPreco').classList.add('error');
@@ -101,13 +99,13 @@
             document.getElementById('resultadoPreco').classList.remove('error');
         }
     </script>
-	#links para outras areas do site
-	<ul>
-		<li><a href="index.html">Pagina principal</a></li>
-		<li><a href="sobre.html">Saiba mais sobre nós</a></li>
-		<li><a href="contato.html">Entre em contato</a></li>
-		<li><a href="requisicao.html">Comissione um trabalho nosso!</a></li>
-	</ul>
+
+    <ul>
+        <li><a href="index.html">Pagina principal</a></li>
+        <li><a href="sobre.html">Saiba mais sobre nós</a></li>
+        <li><a href="contato.html">Entre em contato</a></li>
+        <li><a href="requisicao.html">Comissione um trabalho nosso!</a></li>
+    </ul>
 
 </body>
 </html>
